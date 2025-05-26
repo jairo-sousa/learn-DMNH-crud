@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS forum;
+
+CREATE TABLE IF NOT EXISTS user (
+    id          INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    userName    VARCHAR(30) UNIQUE NOT NULL,
+    name        VARCHAR(100) NOT NULL,
+    password    VARCHAR(30) NOT NULL,
+    profileUrl  VARCHAR(300)
+);
+
