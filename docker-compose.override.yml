@@ -1,6 +1,8 @@
 services:
   database:
     restart: "no"
+    volumes:
+      - /var/lib/mysql
 
   app:
     command: node --watch app.js
