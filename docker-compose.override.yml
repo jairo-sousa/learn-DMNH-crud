@@ -1,0 +1,9 @@
+services:
+  database:
+    restart: "no"
+
+  app:
+    command: node --watch app.js
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
