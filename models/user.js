@@ -1,45 +1,30 @@
 const connection = require("../database/conection");
-const sql = require("./userQueries");
+const sqlUser = require("./userQueries");
 
 class UserModel {
-    getAll() {
+    runQuery(sql, params = []) {
         return new Promise((resolve, reject) => {
-            connection.query(sql.getAll, {}, (error, response) => {
+            connection.query(sql, params, (error, response) => {
                 if (error) reject(error);
 
                 resolve(response);
             });
         });
+    }
+    getAll() {
+        return this.runQuery(sqlUser.getAll);
     }
 
     post(userSent) {
-        return new Promise((resolve, reject) => {
-            connection.query(sql.post, userSent, (error, response) => {
-                if (error) reject(error);
-
-                resolve(response);
-            });
-        });
+        return this.runQuery(sqlUser.post, userSent);
     }
 
     update(userName, userSent) {
-        return new Promise((resolve, reject) => {
-            connection.query(sql.update, [userSent, userName], (error, response) => {
-                if (error) reject(error);
-
-                resolve(response);
-            });
-        });
+        return this.runQuery(sqlUser.update, [userName, userSent]);
     }
 
     delete(userName) {
-        return new Promise((resolve, reject) => {
-            connection.query(sql.remove, userName, (error, response) => {
-                if (error) reject(error);
-
-                resolve(response);
-            });
-        });
+        return this.runQuery(sqlUser.remove, userName);
     }
 }
 
