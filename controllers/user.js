@@ -1,17 +1,61 @@
 const userModel = require("../models/user");
 
 class UserController {
-    get() {
-        return userModel.getAll();
+    get(req, reply) {
+        const userSent = req.body;
+
+        const response = userModel.getAll();
+
+        response
+            .then((newUser) => {
+                return reply.status(200).json(newUser);
+            })
+            .catch((error) => {
+                return reply.status(400).json(error.message);
+            });
     }
-    post(userSent) {
-        return userModel.post(userSent);
+
+    post(req, reply) {
+        const userSent = req.body;
+
+        const response = userModel.post(userSent);
+
+        response
+            .then((newUser) => {
+                return reply.status(200).json(newUser);
+            })
+            .catch((error) => {
+                return reply.status(400).json(error.message);
+            });
     }
-    update(userName, userSent) {
-        return userModel.update(userName, userSent);
+
+    update(req, reply) {
+        const { userName } = req.params;
+        const userSent = req.body;
+
+        const response = userModel.update(userName, userSent);
+
+        response
+            .then((atualUser) => {
+                return reply.status(200).json(atualUser);
+            })
+            .catch((error) => {
+                return reply.status(400).json(error.message);
+            });
     }
-    delete(userName) {
-        return userModel.delete(userName);
+
+    delete(req, reply) {
+        const { userName } = req.params;
+
+        const response = userModel.delete(userName);
+
+        response
+            .then((deletedUser) => {
+                return reply.status(200).json(deletedUser);
+            })
+            .catch((error) => {
+                return reply.status(400).json(error.message);
+            });
     }
 }
 

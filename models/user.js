@@ -20,7 +20,7 @@ class UserModel {
     }
 
     update(userName, userSent) {
-        return this.runQuery(sqlUser.update, [userName, userSent]);
+        return this.runQuery(sqlUser.update, [userSent, userName]);
     }
 
     delete(userName) {
