@@ -31,9 +31,17 @@ userRouter.post("/user", (req, reply) => {
 
 userRouter.put("/user/:userName", (req, reply) => {
     const { userName } = req.params;
+    const userSent = req.body;
 
-    const response = userController.put(userName);
-    return reply.send({ method: "put", response });
+    const response = userController.update(userName, userSent);
+
+    response
+        .then((atualUser) => {
+            return reply.status(200).json(atualUser);
+        })
+        .catch((error) => {
+            return reply.status(400).json(error.message);
+        });
 });
 
 userRouter.delete("/user/:userName", (req, reply) => {

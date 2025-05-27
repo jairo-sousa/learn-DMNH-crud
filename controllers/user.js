@@ -7,8 +7,8 @@ class UserController {
     post(userSent) {
         return userModel.post(userSent);
     }
-    update(userName) {
-        return { operation: `Update user ${userName}` };
+    update(userName, userSent) {
+        return userModel.update(userName, userSent);
     }
     delete(userName) {
         return { operation: `Delete user ${userName}` };
