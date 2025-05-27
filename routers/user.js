@@ -6,13 +6,27 @@ const userController = require("../controllers/user");
 userRouter.get("/user", (req, reply) => {
     const response = userController.get();
 
-    return reply.send({ method: "get", response });
+    response
+        .then((users) => {
+            return reply.status(200).json(users);
+        })
+        .catch((error) => {
+            return reply.status(400).json(error.message);
+        });
 });
 
 userRouter.post("/user", (req, reply) => {
-    const response = userController.post();
+    const userSent = req.body;
 
-    return reply.send({ method: "post", response });
+    const response = userController.post(userSent);
+
+    response
+        .then((newUser) => {
+            return reply.status(200).json(newUser);
+        })
+        .catch((error) => {
+            return reply.status(400).json(error.message);
+        });
 });
 
 userRouter.put("/user/:userName", (req, reply) => {

@@ -1,15 +1,17 @@
+const userModel = require("../models/user");
+
 class UserController {
     get() {
-        return { message: "Get users" };
+        return userModel.getAll();
     }
-    post() {
-        return { message: "Create user" };
+    post(userSent) {
+        return userModel.post(userSent);
     }
     update(userName) {
-        return { message: `Update user ${userName}` };
+        return { operation: `Update user ${userName}` };
     }
     delete(userName) {
-        return { message: `Delete user ${userName}` };
+        return { operation: `Delete user ${userName}` };
     }
 }
 

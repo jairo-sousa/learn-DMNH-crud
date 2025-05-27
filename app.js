@@ -2,9 +2,10 @@
 
 const express = require("express");
 const app = express();
+exports.app = app;
 
 const router = require("./routers");
-router(app);
+router(app, express);
 
 const connection = require("./database/conection");
 const database = require("./database/database");
