@@ -10,7 +10,7 @@ const connection = require("./database/conection");
 const database = require("./database/database");
 database.init(connection);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 80;
 const HOST = process.env.HOST || "localhost";
 
 app.listen(PORT, (error) => {
