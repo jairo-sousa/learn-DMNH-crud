@@ -31,6 +31,16 @@ class UserModel {
             });
         });
     }
+
+    delete(userName) {
+        return new Promise((resolve, reject) => {
+            connection.query(sql.remove, userName, (error, response) => {
+                if (error) reject(error);
+
+                resolve(response);
+            });
+        });
+    }
 }
 
 module.exports = new UserModel();

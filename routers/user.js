@@ -48,7 +48,14 @@ userRouter.delete("/user/:userName", (req, reply) => {
     const { userName } = req.params;
 
     const response = userController.delete(userName);
-    return reply.send({ method: "delete", response });
+
+    response
+        .then((deletedUser) => {
+            return reply.status(200).json(deletedUser);
+        })
+        .catch((error) => {
+            return reply.status(400).json(error.message);
+        });
 });
 
 module.exports = userRouter;

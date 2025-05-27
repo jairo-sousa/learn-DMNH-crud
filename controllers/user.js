@@ -11,7 +11,7 @@ class UserController {
         return userModel.update(userName, userSent);
     }
     delete(userName) {
-        return { operation: `Delete user ${userName}` };
+        return userModel.delete(userName);
     }
 }
 
